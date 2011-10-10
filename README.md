@@ -1,4 +1,4 @@
-# Passport-OAuth
+# Passport-Twitter
 
 [Passport](https://github.com/jaredhanson/passport) strategy for authenticating
 with Twitter using the OAuth 1.0a API.
