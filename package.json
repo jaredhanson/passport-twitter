@@ -1,0 +1,16 @@
+{
+  "name": "passport-twitter",
+  "version": "0.1.0",
+  "description": "Twitter authentication strategy for Passport.",
+  "author": "Jared Hanson <jaredhanson@gmail.com> (http://www.jaredhanson.net/)",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jaredhanson/passport-twitter.git"
+  },
+  "main": "./lib/passport-twitter",
+  "dependencies": {
+    "passport-oauth": ">= 0.0.1"
+  },
+  "engines": { "node": ">= 0.4.0" },
+  "keywords": ["passport", "twitter", "auth", "authn", "authentication"]
+}
