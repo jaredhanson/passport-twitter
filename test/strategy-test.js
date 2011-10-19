@@ -18,6 +18,26 @@ vows.describe('TwitterStrategy').addBatch({
     'should be named twitter': function (strategy) {
       assert.equal(strategy.name, 'twitter');
     },
+    
+    'when told to load user profile': {
+      topic: function(strategy) {
+        var self = this;
+        function done(err, profile) {
+          self.callback(err, profile);
+        }
+        process.nextTick(function () {
+          strategy.userProfile('', '', {"user_id":"1705","screen_name":"jaredhanson"}, done);
+        });
+      },
+      
+      'should not error' : function(err, req) {
+        assert.isNull(err);
+      },
+      'should load profile' : function(err, profile) {
+        assert.equal(profile.id, '1705');
+        assert.equal(profile.username, 'jaredhanson');
+      },
+    },
   },
   
   'strategy handling a request that has been denied': {

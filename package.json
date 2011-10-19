@@ -12,5 +12,5 @@
     "passport-oauth": ">= 0.0.1"
   },
   "engines": { "node": ">= 0.4.0" },
-  "keywords": ["passport", "twitter", "auth", "authn", "authentication"]
+  "keywords": ["passport", "twitter", "auth", "authn", "authentication", "identity"]
 }
