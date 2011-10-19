@@ -34,6 +34,7 @@ vows.describe('TwitterStrategy').addBatch({
         assert.isNull(err);
       },
       'should load profile' : function(err, profile) {
+        assert.equal(profile.provider, 'twitter');
         assert.equal(profile.id, '1705');
         assert.equal(profile.username, 'jaredhanson');
       },
