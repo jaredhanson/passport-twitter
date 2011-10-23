@@ -7,6 +7,7 @@ with Twitter using the OAuth 1.0a API.
 
     $ npm install passport-twitter
 
+## Usage
 
 #### Configure Strategy
 
