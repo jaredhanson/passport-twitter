@@ -1,0 +1,10 @@
+{
+  "name": "passport-twitter-examples-signin",
+  "version": "0.0.0",
+  "dependencies": {
+    "express": ">= 0.0.0",
+    "ejs": ">= 0.0.0",
+    "passport": ">= 0.0.0",
+    "passport-twitter": ">= 0.0.0"
+  }
+}
