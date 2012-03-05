@@ -1,7 +1,7 @@
 # Passport-Twitter
 
 [Passport](https://github.com/jaredhanson/passport) strategy for authenticating
-with Twitter using the OAuth 1.0a API.
+with [Twitter](http://twitter.com/) using the OAuth 1.0a API.
 
 ## Installation
 
@@ -50,9 +50,16 @@ application:
         res.redirect('/');
       });
 
-#### Examples
+## Examples
 
 For a complete, working example, refer to the [signin example](https://github.com/jaredhanson/passport-twitter/tree/master/examples/signin).
+
+## Tests
+
+    $ npm install --dev
+    $ make test
+
+[![Build Status](https://secure.travis-ci.org/jaredhanson/passport-twitter.png)](http://travis-ci.org/jaredhanson/passport-twitter)
 
 ## Credits
 
