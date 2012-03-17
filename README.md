@@ -6,7 +6,8 @@ using the OAuth 1.0a API.
 This module lets you authenticate using Twitter in your Node.js applications.
 By plugging into Passport, Twitter authentication can be easily and
 unobtrusively integrated into any application or framework that supports
-Connect-style middleware, including Express.
+[Connect](http://www.senchalabs.org/connect/)-style middleware, including
+[Express](http://expressjs.com/).
 
 ## Installation
 
