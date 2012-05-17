@@ -43,11 +43,7 @@ For example, as route middleware in an [Express](http://expressjs.com/)
 application:
 
     app.get('/auth/twitter',
-      passport.authenticate('twitter'),
-      function(req, res){
-        // The request will be redirected to Twitter for authentication, so this
-        // function will not be called.
-      });
+      passport.authenticate('twitter'));
     
     app.get('/auth/twitter/callback', 
       passport.authenticate('twitter', { failureRedirect: '/login' }),
