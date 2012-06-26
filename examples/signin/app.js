@@ -3,7 +3,7 @@ var express = require('express')
   , util = require('util')
   , TwitterStrategy = require('passport-twitter').Strategy;
 
-var TWITTER_CONSUMER_KEY = "--insert-twitter-consumer-key-here--"
+var TWITTER_CONSUMER_KEY = "--insert-twitter-consumer-key-here--";
 var TWITTER_CONSUMER_SECRET = "--insert-twitter-consumer-secret-here--";
 
 
