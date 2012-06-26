@@ -20,7 +20,8 @@ unobtrusively integrated into any application or framework that supports
 The Twitter authentication strategy authenticates users using a Twitter account
 and OAuth tokens.  The strategy requires a `verify` callback, which accepts these
 credentials and calls `done` providing a user, as well as `options` specifying a
-consumer key, consumer secret, and callback URL.
+consumer key, consumer secret, and callback URL. Obtain the consumer key and 
+consumer secret by [creating a Twitter application.](https://dev.twitter.com/apps)
 
     passport.use(new TwitterStrategy({
         consumerKey: TWITTER_CONSUMER_KEY,
