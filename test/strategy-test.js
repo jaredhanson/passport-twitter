@@ -58,6 +58,7 @@ vows.describe('TwitterStrategy').addBatch({
         assert.equal(profile.id, '6253282');
         assert.equal(profile.username, 'twitterapi');
         assert.equal(profile.displayName, 'Twitter API');
+        assert.equal(profile.photos[0].value, 'https://si0.twimg.com/profile_images/1438634086/avatar_normal.png');
       },
       'should set raw property' : function(err, profile) {
         assert.isString(profile._raw);
