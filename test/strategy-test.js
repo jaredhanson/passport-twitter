@@ -20,6 +20,29 @@ vows.describe('TwitterStrategy').addBatch({
     },
   },
   
+  'strategy user authorization params': {
+    topic: function() {
+      return new TwitterStrategy({
+        consumerKey: 'ABC123',
+        consumerSecret: 'secret'
+      },
+      function() {});
+    },
+    
+    'should return empty object when parsing invalid options': function (strategy) {
+      var params = strategy.userAuthorizationParams({ foo: 'bar' });
+      assert.lengthOf(Object.keys(params), 0);
+    },
+    'should return force_login': function (strategy) {
+      var params = strategy.userAuthorizationParams({ forceLogin: true });
+      assert.equal(params.force_login, true);
+    },
+    'should return screen_name': function (strategy) {
+      var params = strategy.userAuthorizationParams({ screenName: 'bob' });
+      assert.equal(params.screen_name, 'bob');
+    },
+  },
+  
   'strategy when loading user profile': {
     topic: function() {
       var strategy = new TwitterStrategy({
