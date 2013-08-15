@@ -28,7 +28,7 @@
       "url": "http://www.opensource.org/licenses/MIT"
     }
   ],
-  "main": "./lib/passport-twitter",
+  "main": "./lib",
   "dependencies": {
     "pkginfo": "0.2.x",
     "passport-oauth": "0.1.x"
