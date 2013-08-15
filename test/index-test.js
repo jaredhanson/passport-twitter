@@ -8,7 +8,6 @@ vows.describe('passport-twitter').addBatch({
   
   'module': {
     'should report a version': function (x) {
-      assert.isString(twitter.version);
     },
   },
   
