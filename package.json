@@ -33,7 +33,6 @@
     "passport-oauth1": "1.x.x"
   },
   "devDependencies": {
-    "vows": "0.6.x",
     "mocha": "1.x.x",
     "chai": "1.x.x",
     "chai-passport-strategy": "0.1.x"
