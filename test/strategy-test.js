@@ -6,6 +6,7 @@ var TwitterStrategy = require('../lib/strategy');
 
 vows.describe('TwitterStrategy').addBatch({
   
+  // OK
   'strategy': {
     topic: function() {
       return new TwitterStrategy({
@@ -20,6 +21,7 @@ vows.describe('TwitterStrategy').addBatch({
     },
   },
   
+  // OK
   'strategy user authorization params': {
     topic: function() {
       return new TwitterStrategy({
@@ -43,6 +45,7 @@ vows.describe('TwitterStrategy').addBatch({
     },
   },
   
+  // OK
   'strategy when loading user profile': {
     topic: function() {
       var strategy = new TwitterStrategy({
@@ -148,6 +151,7 @@ vows.describe('TwitterStrategy').addBatch({
     },
   },
   
+  // OK
   'strategy when loading user profile and encountering an error': {
     topic: function() {
       var strategy = new TwitterStrategy({
@@ -230,6 +234,7 @@ vows.describe('TwitterStrategy').addBatch({
     },
   },
   
+  // OK
   'strategy handling a request that has been denied': {
     topic: function() {
       var strategy = new TwitterStrategy({
