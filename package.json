@@ -1,6 +1,6 @@
 {
   "name": "passport-twitter",
-  "version": "0.1.5",
+  "version": "1.0.0",
   "description": "Twitter authentication strategy for Passport.",
   "keywords": [
     "passport",
