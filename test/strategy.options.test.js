@@ -75,8 +75,8 @@ describe('Strategy#userProfile', function() {
     
       it('should parse profile', function() {
         expect(profile.provider).to.equal('twitter');
-        expect(profile.id, '1705');
-        expect(profile.username, 'jaredhanson');
+        expect(profile.id).to.equal('1705');
+        expect(profile.username).to.equal('jaredhanson');
       });
     
       it('should not set raw property', function() {

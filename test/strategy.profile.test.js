@@ -31,10 +31,10 @@ describe('Strategy#userProfile', function() {
     
     it('should parse profile', function() {
       expect(profile.provider).to.equal('twitter');
-      expect(profile.id, '6253282');
-      expect(profile.username, 'twitterapi');
-      expect(profile.displayName, 'Twitter API');
-      expect(profile.photos[0].value, 'https://si0.twimg.com/profile_images/1438634086/avatar_normal.png');
+      expect(profile.id).to.equal('6253282');
+      expect(profile.username).to.equal('twitterapi');
+      expect(profile.displayName).to.equal('Twitter API');
+      expect(profile.photos[0].value).to.equal('https://si0.twimg.com/profile_images/1438634086/avatar_normal.png');
     });
     
     it('should set raw property', function() {
