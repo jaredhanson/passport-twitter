@@ -98,6 +98,7 @@ vows.describe('TwitterStrategy').addBatch({
     },
   },
   
+  // OK
   'strategy when loading user profile with user profile url option': {
     topic: function() {
       var strategy = new TwitterStrategy({
@@ -192,6 +193,7 @@ vows.describe('TwitterStrategy').addBatch({
     },
   },
   
+  // OK
   'strategy when loading user profile without extended info': {
     topic: function() {
       var strategy = new TwitterStrategy({
