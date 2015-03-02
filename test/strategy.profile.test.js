@@ -32,7 +32,6 @@ describe('Strategy#userProfile', function() {
     
     it('should parse profile', function() {
       expect(profile.provider).to.equal('twitter');
-      expect(profile.access_level).to.equal('read');
       expect(profile.id).to.equal('6253282');
       expect(profile.username).to.equal('twitterapi');
       expect(profile.displayName).to.equal('Twitter API');
@@ -45,6 +44,10 @@ describe('Strategy#userProfile', function() {
     
     it('should set json property', function() {
       expect(profile._json).to.be.an('object');
+    });
+    
+    it('should set accessLevel property', function() {
+      expect(profile._accessLevel).to.equal('read');
     });
   });
   
