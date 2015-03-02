@@ -35,6 +35,7 @@ describe('Strategy#userProfile', function() {
       expect(profile.id).to.equal('6253282');
       expect(profile.username).to.equal('twitterapi');
       expect(profile.displayName).to.equal('Twitter API');
+      expect(profile.profileUrl).to.equal('https://twitter.com/twitterapi');
       expect(profile.photos[0].value).to.equal('https://si0.twimg.com/profile_images/1438634086/avatar_normal.png');
     });
     
