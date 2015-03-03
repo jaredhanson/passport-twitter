@@ -67,7 +67,7 @@ application:
 
 ## Examples
 
-For a complete, working example, refer to the [signin example](https://github.com/jaredhanson/passport-twitter/tree/master/examples/signin).
+For a complete, working example, refer to the [passport-twitter-with-express3 example](https://github.com/jaredhanson/passport-twitter/tree/master/examples/passport-twitter-with-express3).
 
 ## Tests
 
