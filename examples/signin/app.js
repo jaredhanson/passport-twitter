@@ -3,8 +3,19 @@ var express = require('express')
   , util = require('util')
   , TwitterStrategy = require('passport-twitter').Strategy;
 
+var path = require('path');
+
+var logger = require('morgan');
+var methodOverride = require('method-override');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var bodyParser = require('body-parser');
+var errorHandler = require('errorhandler');
+
 var TWITTER_CONSUMER_KEY = "--insert-twitter-consumer-key-here--";
 var TWITTER_CONSUMER_SECRET = "--insert-twitter-consumer-secret-here--";
+
+var portNum = process.env.PORT || 3000;
 
 
 // Passport session setup.
@@ -30,7 +41,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new TwitterStrategy({
     consumerKey: TWITTER_CONSUMER_KEY,
     consumerSecret: TWITTER_CONSUMER_SECRET,
-    callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+    callbackURL: 'http://127.0.0.1:' + portNum + '/auth/twitter/callback'
   },
   function(token, tokenSecret, profile, done) {
     // asynchronous verification, for effect...
@@ -45,32 +56,29 @@ passport.use(new TwitterStrategy({
   }
 ));
 
+var app = express();
 
-
-
-var app = express.createServer();
-
-// configure Express
-app.configure(function() {
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'ejs');
-  app.use(express.logger());
-  app.use(express.cookieParser());
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(express.session({ secret: 'keyboard cat' }));
-  // Initialize Passport!  Also use passport.session() middleware, to support
-  // persistent login sessions (recommended).
-  app.use(passport.initialize());
-  app.use(passport.session());
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
-});
+// all environments
+app.set('port', portNum);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.use(logger('dev'));
+app.use(methodOverride());
+app.use(cookieParser());
+app.use(session({ resave: true,
+    saveUninitialized: true,
+    secret: 'keyboard cat' }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/', function(req, res){
   res.render('index', { user: req.user });
 });
+
 
 app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user });
@@ -97,7 +105,8 @@ app.get('/auth/twitter',
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/auth/twitter/callback', 
+app.get('/auth/twitter/callback',
+
   passport.authenticate('twitter', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
@@ -108,8 +117,9 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen(3000);
+app.listen(portNum);
 
+console.log('listening on port ' + portNum);
 
 // Simple route middleware to ensure user is authenticated.
 //   Use this route middleware on any resource that needs to be protected.  If
