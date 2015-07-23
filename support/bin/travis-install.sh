@@ -6,7 +6,7 @@ echo "Node version: ${nodeVersion}"
 case $nodeVersion in
   v0.8.*)
     echo "Node 0.8"
-    npm install istanbul@0.3.0 -g
+    npm install istanbul@0.3.10 -g
     npm install coveralls -g
     ;;
   *) # latest
