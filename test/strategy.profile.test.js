@@ -5,7 +5,8 @@ describe('Strategy#userProfile', function() {
     
   var strategy = new TwitterStrategy({
       consumerKey: 'ABC123',
-      consumerSecret: 'secret'
+      consumerSecret: 'secret',
+      userProfileURL: 'https://api.twitter.com/1.1/users/show.json'
     },
     function() {});
     

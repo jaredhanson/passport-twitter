@@ -6,7 +6,8 @@ describe('Strategy#userProfile', function() {
   describe('handling API errors', function() {
     var strategy = new TwitterStrategy({
         consumerKey: 'ABC123',
-        consumerSecret: 'secret'
+        consumerSecret: 'secret',
+        userProfileURL: 'https://api.twitter.com/1.1/users/show.json'
       },
       function() {});
     
@@ -42,7 +43,8 @@ describe('Strategy#userProfile', function() {
   describe('handling malformed responses', function() {
     var strategy = new TwitterStrategy({
         consumerKey: 'ABC123',
-        consumerSecret: 'secret'
+        consumerSecret: 'secret',
+        userProfileURL: 'https://api.twitter.com/1.1/users/show.json'
       },
       function() {});
     
