@@ -1,17 +1,16 @@
-var fs = require('fs')
-  , parse = require('../lib/profile').parse;
+var Profile = require('../lib/profile')
+  , fs = require('fs');
 
 
-describe('profile.parse', function() {
+describe('Profile.parse', function() {
     
-  describe('example profile', function() {
+  describe('profile obtained from documentation at some unknown date', function() {
     var profile;
     
     before(function(done) {
-      fs.readFile('test/data/example.json', 'utf8', function(err, data) {
+      fs.readFile('test/fixtures/users/rsarver.json', 'utf8', function(err, data) {
         if (err) { return done(err); }
-        profile = parse(data);
-        console.log(profile);
+        profile = Profile.parse(data);
         done();
       });
     });
