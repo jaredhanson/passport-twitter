@@ -1,8 +1,57 @@
-var TwitterStrategy = require('../lib/strategy');
+var TwitterStrategy = require('../lib/strategy')
+  , fs = require('fs');
 
 
 describe('Strategy#userProfile', function() {
+  
+  describe('fetched from default endpoint', function() {
+    var strategy = new TwitterStrategy({
+      consumerKey: 'ABC123',
+      consumerSecret: 'secret'
+    }, function verify(){});
     
+    strategy._oauth.get = function(url, token, tokenSecret, callback) {
+      if (url != 'https://api.twitter.com/1.1/account/verify_credentials.json') { return callback(new Error('incorrect url argument')); }
+      if (token != 'token') { return callback(new Error('incorrect token argument')); }
+      if (tokenSecret != 'token-secret') { return callback(new Error('incorrect tokenSecret argument')); }
+    
+      var body = fs.readFileSync('test/fixtures/account/theSeanCook.json', 'utf8');
+      var response = {headers:{'x-access-level': 'read'}};
+      callback(null, body, response);
+    }
+    
+    
+    var profile;
+  
+    before(function(done) {
+      strategy.userProfile('token', 'token-secret', { user_id: '6253282' }, function(err, p) {
+        if (err) { return done(err); }
+        profile = p;
+        done();
+      });
+    });
+  
+    it('should parse profile', function() {
+      expect(profile.provider).to.equal('twitter');
+      expect(profile.id).to.equal('38895958');
+      expect(profile.username).to.equal('theSeanCook');
+      expect(profile.displayName).to.equal('Sean Cook');
+    });
+  
+    it('should set raw property', function() {
+      expect(profile._raw).to.be.a('string');
+    });
+  
+    it('should set json property', function() {
+      expect(profile._json).to.be.an('object');
+    });
+  
+    it('should set accessLevel property', function() {
+      expect(profile._accessLevel).to.equal('read');
+    });
+    
+  }); // fetched from default endpoint
+  
   describe('fetched from legacy users/show endpoint', function() {
     var strategy = new TwitterStrategy({
       consumerKey: 'ABC123',
@@ -155,5 +204,42 @@ describe('Strategy#userProfile', function() {
       expect(profile).to.be.undefined;
     });
   }); // internal error
+  
+  describe('skipping extended profile', function() {
+    var strategy = new TwitterStrategy({
+      consumerKey: 'ABC123',
+      consumerSecret: 'secret',
+      skipExtendedUserProfile: true
+    }, function verify(){});
+    
+    strategy._oauth.get = function(url, token, tokenSecret, callback) {
+      return callback(new Error('should not fetch profile'));
+    }
+    
+    
+    var profile;
+  
+    before(function(done) {
+      strategy.userProfile('token', 'token-secret', {"user_id":"1705","screen_name":"jaredhanson"}, function(err, p) {
+        if (err) { return done(err); }
+        profile = p;
+        done();
+      });
+    });
+  
+    it('should parse profile', function() {
+      expect(profile.provider).to.equal('twitter');
+      expect(profile.id).to.equal('1705');
+      expect(profile.username).to.equal('jaredhanson');
+    });
+  
+    it('should not set raw property', function() {
+      expect(profile._raw).to.be.undefined;
+    });
+  
+    it('should not set json property', function() {
+      expect(profile._json).to.be.undefined;
+    });
+  }); // skipping extended profile
   
 });
