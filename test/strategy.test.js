@@ -15,6 +15,14 @@ describe('Strategy', function() {
     });
   })
   
+  describe('constructed without required options', function() {
+    it('should throw', function() {
+      expect(function() {
+        var strategy = new TwitterStrategy(function(){});
+      }).to.throw(Error);
+    });
+  })
+  
   describe('authorization request', function() {
     var strategy = new TwitterStrategy({
         consumerKey: 'ABC123',
@@ -131,6 +139,39 @@ describe('Strategy', function() {
     it('should error', function() {
       expect(err).to.be.an.instanceOf(Error);
       expect(err.message).to.equal("Could not authenticate you.");
+    });
+  });
+  
+  describe('error caused by invalid consumer secret sent to request token URL, formatted as unexpected JSON', function() {
+    var strategy = new TwitterStrategy({
+      consumerKey: 'ABC123',
+      consumerSecret: 'invalid-secret',
+      callbackURL: 'http://www.example.test/callback'
+    }, function verify(){});
+    
+    strategy._oauth.getOAuthRequestToken = function(params, callback) {
+      callback({ statusCode: 401, data: '{"foo":"bar"}' });
+    }
+    
+    
+    var err;
+  
+    before(function(done) {
+      chai.passport.use(strategy)
+        .error(function(e) {
+          err = e;
+          done();
+        })
+        .req(function(req) {
+          req.session = {};
+        })
+        .authenticate();
+    });
+  
+    it('should error', function() {
+      expect(err).to.be.an.instanceOf(Error);
+      expect(err.constructor.name).to.equal('InternalOAuthError');
+      expect(err.message).to.equal('Failed to obtain request token');
     });
   });
   
