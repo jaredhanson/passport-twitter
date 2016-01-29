@@ -15,10 +15,10 @@ describe('Strategy', function() {
     });
   })
   
-  describe('constructed without required options', function() {
+  describe('constructed with undefined options', function() {
     it('should throw', function() {
       expect(function() {
-        var strategy = new TwitterStrategy(function(){});
+        var strategy = new TwitterStrategy(undefined, function(){});
       }).to.throw(Error);
     });
   })
