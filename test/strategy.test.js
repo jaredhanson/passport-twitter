@@ -3,17 +3,55 @@ var chai = require('chai')
 
 
 describe('Strategy', function() {
+  
+  describe('constructed', function() {
+    var strategy = new TwitterStrategy({
+        consumerKey: 'ABC123',
+        consumerSecret: 'secret'
+      }, function(){});
     
-  var strategy = new TwitterStrategy({
-      consumerKey: 'ABC123',
-      consumerSecret: 'secret'
-    }, function(){});
+    it('should be named twitter', function() {
+      expect(strategy.name).to.equal('twitter');
+    });
+  })
+  
+  describe('authorization request with parameters', function() {
+    var strategy = new TwitterStrategy({
+        consumerKey: 'ABC123',
+        consumerSecret: 'secret'
+      }, function(){});
     
-  it('should be named twitter', function() {
-    expect(strategy.name).to.equal('twitter');
+    strategy._oauth.getOAuthRequestToken = function(extraParams, callback) {
+      callback(null, 'hh5s93j4hdidpola', 'hdhd0244k9j7ao03', {});
+    }
+    
+    
+    var url;
+  
+    before(function(done) {
+      chai.passport(strategy)
+        .redirect(function(u) {
+          url = u;
+          done();
+        })
+        .req(function(req) {
+          req.session = {};
+        })
+        .authenticate({ screenName: 'bob', forceLogin: true });
+    });
+  
+    it('should be redirected', function() {
+      expect(url).to.equal('https://api.twitter.com/oauth/authenticate?oauth_token=hh5s93j4hdidpola&force_login=true&screen_name=bob');
+    });
   });
   
   describe('failure caused by user denying request', function() {
+    var strategy = new TwitterStrategy({
+        consumerKey: 'ABC123',
+        consumerSecret: 'secret'
+      }, function(){});
+    
+    
     var info;
   
     before(function(done) {
