@@ -53,7 +53,7 @@ describe('Strategy#userProfile', function() {
     
   }); // fetched from legacy users/show endpoint
   
-  describe('failure caused by invalid token', function() {
+  describe('error caused by invalid token', function() {
     var strategy = new TwitterStrategy({
       consumerKey: 'ABC123',
       consumerSecret: 'secret',
@@ -87,9 +87,9 @@ describe('Strategy#userProfile', function() {
     it('should not supply profile', function() {
       expect(profile).to.be.undefined;
     });
-  }); // failure caused by invalid token
+  }); // error caused by invalid token
   
-  describe('failure caused by malformed response', function() {
+  describe('error caused by malformed response', function() {
     var strategy = new TwitterStrategy({
       consumerKey: 'ABC123',
       consumerSecret: 'secret',
@@ -120,7 +120,7 @@ describe('Strategy#userProfile', function() {
     it('should not supply profile', function() {
       expect(profile).to.be.undefined;
     });
-  }); // failure caused by malformed response
+  }); // error caused by malformed response
   
   describe('internal error', function() {
     var strategy = new TwitterStrategy({

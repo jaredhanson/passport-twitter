@@ -7,14 +7,13 @@ describe('Strategy', function() {
   var strategy = new TwitterStrategy({
       consumerKey: 'ABC123',
       consumerSecret: 'secret'
-    },
-    function() {});
+    }, function(){});
     
   it('should be named twitter', function() {
     expect(strategy.name).to.equal('twitter');
   });
   
-  describe('handling a return request in which authorization was denied by user', function() {
+  describe('failure caused by user denying request', function() {
     var info;
   
     before(function(done) {
@@ -35,7 +34,7 @@ describe('Strategy', function() {
     });
   });
   
-  describe('failure caused by invalid consumer secret sent to request token URL', function() {
+  describe('error caused by invalid consumer secret sent to request token URL', function() {
     var strategy = new TwitterStrategy({
       consumerKey: 'ABC123',
       consumerSecret: 'invalid-secret',
@@ -67,7 +66,7 @@ describe('Strategy', function() {
     });
   });
   
-  describe('failure caused by invalid callback sent to request token URL', function() {
+  describe('error caused by invalid callback sent to request token URL', function() {
     var strategy = new TwitterStrategy({
       consumerKey: 'ABC123',
       consumerSecret: 'secret',
@@ -99,7 +98,7 @@ describe('Strategy', function() {
     });
   });
   
-  describe('failure caused by invalid request token sent to access token URL', function() {
+  describe('error caused by invalid request token sent to access token URL', function() {
     var strategy = new TwitterStrategy({
       consumerKey: 'ABC123',
       consumerSecret: 'secret',
@@ -137,7 +136,7 @@ describe('Strategy', function() {
     });
   });
   
-  describe('failure caused by invalid verifier sent to access token URL', function() {
+  describe('error caused by invalid verifier sent to access token URL', function() {
     var strategy = new TwitterStrategy({
       consumerKey: 'ABC123',
       consumerSecret: 'secret',
