@@ -102,6 +102,43 @@ describe('Strategy#userProfile', function() {
     
   }); // fetched from legacy users/show endpoint
   
+  describe('skipping extended profile', function() {
+    var strategy = new TwitterStrategy({
+      consumerKey: 'ABC123',
+      consumerSecret: 'secret',
+      skipExtendedUserProfile: true
+    }, function verify(){});
+    
+    strategy._oauth.get = function(url, token, tokenSecret, callback) {
+      return callback(new Error('should not fetch profile'));
+    }
+    
+    
+    var profile;
+  
+    before(function(done) {
+      strategy.userProfile('token', 'token-secret', {"user_id":"1705","screen_name":"jaredhanson"}, function(err, p) {
+        if (err) { return done(err); }
+        profile = p;
+        done();
+      });
+    });
+  
+    it('should parse profile', function() {
+      expect(profile.provider).to.equal('twitter');
+      expect(profile.id).to.equal('1705');
+      expect(profile.username).to.equal('jaredhanson');
+    });
+  
+    it('should not set raw property', function() {
+      expect(profile._raw).to.be.undefined;
+    });
+  
+    it('should not set json property', function() {
+      expect(profile._json).to.be.undefined;
+    });
+  }); // skipping extended profile
+  
   describe('error caused by invalid token', function() {
     var strategy = new TwitterStrategy({
       consumerKey: 'ABC123',
@@ -204,42 +241,5 @@ describe('Strategy#userProfile', function() {
       expect(profile).to.be.undefined;
     });
   }); // internal error
-  
-  describe('skipping extended profile', function() {
-    var strategy = new TwitterStrategy({
-      consumerKey: 'ABC123',
-      consumerSecret: 'secret',
-      skipExtendedUserProfile: true
-    }, function verify(){});
-    
-    strategy._oauth.get = function(url, token, tokenSecret, callback) {
-      return callback(new Error('should not fetch profile'));
-    }
-    
-    
-    var profile;
-  
-    before(function(done) {
-      strategy.userProfile('token', 'token-secret', {"user_id":"1705","screen_name":"jaredhanson"}, function(err, p) {
-        if (err) { return done(err); }
-        profile = p;
-        done();
-      });
-    });
-  
-    it('should parse profile', function() {
-      expect(profile.provider).to.equal('twitter');
-      expect(profile.id).to.equal('1705');
-      expect(profile.username).to.equal('jaredhanson');
-    });
-  
-    it('should not set raw property', function() {
-      expect(profile._raw).to.be.undefined;
-    });
-  
-    it('should not set json property', function() {
-      expect(profile._json).to.be.undefined;
-    });
-  }); // skipping extended profile
   
 });
