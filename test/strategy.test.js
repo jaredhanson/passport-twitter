@@ -15,6 +15,36 @@ describe('Strategy', function() {
     });
   })
   
+  describe('authorization request', function() {
+    var strategy = new TwitterStrategy({
+        consumerKey: 'ABC123',
+        consumerSecret: 'secret'
+      }, function(){});
+    
+    strategy._oauth.getOAuthRequestToken = function(extraParams, callback) {
+      callback(null, 'hh5s93j4hdidpola', 'hdhd0244k9j7ao03', {});
+    }
+    
+    
+    var url;
+  
+    before(function(done) {
+      chai.passport(strategy)
+        .redirect(function(u) {
+          url = u;
+          done();
+        })
+        .req(function(req) {
+          req.session = {};
+        })
+        .authenticate();
+    });
+  
+    it('should be redirected', function() {
+      expect(url).to.equal('https://api.twitter.com/oauth/authenticate?oauth_token=hh5s93j4hdidpola');
+    });
+  });
+  
   describe('authorization request with parameters', function() {
     var strategy = new TwitterStrategy({
         consumerKey: 'ABC123',
