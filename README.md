@@ -22,18 +22,24 @@ unobtrusively integrated into any application or framework that supports
 
 ## Usage
 
+#### Create an Application
+
+Before using `passport-twitter`, you must register an application with Twitter.
+If you have not already done so, a new application can be created at
+[Twitter Application Management](https://apps.twitter.com/).  Your application
+will be issued a consumer key (API Key) and consumer secret (API Secret), which
+need to be provided to the strategy.  You will also need to configure a callback
+URL which matches the route in your application.
+
 #### Configure Strategy
 
 The Twitter authentication strategy authenticates users using a Twitter account
-and OAuth tokens.  The strategy requires a `verify` callback, which receives the
-access token and corresponding secret as arguments, as well as `profile` which
-contains the authenticated user's Twitter profile.   The `verify` callback must
-call `cb` providing a user to complete authentication.
-
-In order to identify your application to Twitter, specify the consumer key,
-consumer secret, and callback URL within `options`.  The consumer key and secret
-are obtained by [creating an application](https://dev.twitter.com/apps) at
-Twitter's [developer](https://dev.twitter.com/) site.
+and OAuth tokens.  The consumer key and consumer secret obtained when creating
+an application are supplied as options when creating the strategy.  The strategy
+also requires a `verify` callback, which receives the access token and
+corresponding secret as arguments, as well as `profile` which contains the
+authenticated user's Twitter profile.   The `verify` callback must call `cb`
+providing a user to complete authentication.
 
     passport.use(new TwitterStrategy({
         consumerKey: TWITTER_CONSUMER_KEY,
