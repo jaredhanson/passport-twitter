@@ -28,7 +28,7 @@ The Twitter authentication strategy authenticates users using a Twitter account
 and OAuth tokens.  The strategy requires a `verify` callback, which receives the
 access token and corresponding secret as arguments, as well as `profile` which
 contains the authenticated user's Twitter profile.   The `verify` callback must
-call `done` providing a user to complete authentication.
+call `cb` providing a user to complete authentication.
 
 In order to identify your application to Twitter, specify the consumer key,
 consumer secret, and callback URL within `options`.  The consumer key and secret
@@ -40,9 +40,9 @@ Twitter's [developer](https://dev.twitter.com/) site.
         consumerSecret: TWITTER_CONSUMER_SECRET,
         callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
       },
-      function(token, tokenSecret, profile, done) {
+      function(token, tokenSecret, profile, cb) {
         User.findOrCreate({ twitterId: profile.id }, function (err, user) {
-          return done(err, user);
+          return cb(err, user);
         });
       }
     ));
@@ -71,17 +71,43 @@ Developers using the popular [Express](http://expressjs.com/) web framework can
 refer to an [example](https://github.com/passport/express-4.x-twitter-example)
 as a starting point for their own web applications.
 
-## Tests
+## Contributing
 
-    $ npm install
-    $ npm test
+#### Tests
 
-## Credits
+The test suite is located in the `test/` directory.  All new features are
+expected to have corresponding test cases.  Ensure that the complete test suite
+passes by executing:
 
-  - [Jared Hanson](http://github.com/jaredhanson)
+```bash
+$ make test
+```
+
+#### Coverage
+
+The test suite covers 100% of the code base.  All new feature development is
+expected to maintain that level.  Coverage reports can be viewed by executing:
+
+```bash
+$ make test-cov
+$ make view-cov
+```
+
+## Support
+
+#### Funding
+
+This software is provided to you as open source, free of charge.  The time and
+effort to develop and maintain this project is dedicated by [@jaredhanson](https://github.com/jaredhanson).
+If you (or your employer) benefit from this project, please consider a financial
+contribution.  Your contribution helps continue the efforts that produce this
+and other open source software.
+
+Funds are accepted via [PayPal](https://paypal.me/jaredhanson), [Venmo](https://venmo.com/jaredhanson),
+and [other](http://jaredhanson.net/pay) methods.  Any amount is appreciated.
 
 ## License
 
 [The MIT License](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2011-2015 Jared Hanson <[http://jaredhanson.net/](http://jaredhanson.net/)>
+Copyright (c) 2011-2016 Jared Hanson <[http://jaredhanson.net/](http://jaredhanson.net/)>
