@@ -52,6 +52,153 @@ describe('Strategy#userProfile', function() {
     
   }); // fetched from default endpoint
   
+  describe('fetched from default endpoint, with email included', function() {
+    var strategy = new TwitterStrategy({
+      consumerKey: 'ABC123',
+      consumerSecret: 'secret',
+      includeEmail: true
+    }, function verify(){});
+    
+    strategy._oauth.get = function(url, token, tokenSecret, callback) {
+      if (url != 'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true') { return callback(new Error('incorrect url argument')); }
+      if (token != 'token') { return callback(new Error('incorrect token argument')); }
+      if (tokenSecret != 'token-secret') { return callback(new Error('incorrect tokenSecret argument')); }
+    
+      var body = fs.readFileSync('test/fixtures/account/theSeanCook.json', 'utf8');
+      var response = {headers:{'x-access-level': 'read'}};
+      callback(null, body, response);
+    }
+    
+    
+    var profile;
+  
+    before(function(done) {
+      strategy.userProfile('token', 'token-secret', { user_id: '6253282' }, function(err, p) {
+        if (err) { return done(err); }
+        profile = p;
+        done();
+      });
+    });
+  
+    it('should parse profile', function() {
+      expect(profile.provider).to.equal('twitter');
+      expect(profile.id).to.equal('38895958');
+      expect(profile.username).to.equal('theSeanCook');
+      expect(profile.displayName).to.equal('Sean Cook');
+    });
+  
+    it('should set raw property', function() {
+      expect(profile._raw).to.be.a('string');
+    });
+  
+    it('should set json property', function() {
+      expect(profile._json).to.be.an('object');
+    });
+  
+    it('should set accessLevel property', function() {
+      expect(profile._accessLevel).to.equal('read');
+    });
+    
+  }); // fetched from default endpoint, with email included
+  
+  describe('fetched from default endpoint, with status excluded', function() {
+    var strategy = new TwitterStrategy({
+      consumerKey: 'ABC123',
+      consumerSecret: 'secret',
+      includeStatus: false
+    }, function verify(){});
+    
+    strategy._oauth.get = function(url, token, tokenSecret, callback) {
+      if (url != 'https://api.twitter.com/1.1/account/verify_credentials.json?skip_status=true') { return callback(new Error('incorrect url argument')); }
+      if (token != 'token') { return callback(new Error('incorrect token argument')); }
+      if (tokenSecret != 'token-secret') { return callback(new Error('incorrect tokenSecret argument')); }
+    
+      var body = fs.readFileSync('test/fixtures/account/theSeanCook.json', 'utf8');
+      var response = {headers:{'x-access-level': 'read'}};
+      callback(null, body, response);
+    }
+    
+    
+    var profile;
+  
+    before(function(done) {
+      strategy.userProfile('token', 'token-secret', { user_id: '6253282' }, function(err, p) {
+        if (err) { return done(err); }
+        profile = p;
+        done();
+      });
+    });
+  
+    it('should parse profile', function() {
+      expect(profile.provider).to.equal('twitter');
+      expect(profile.id).to.equal('38895958');
+      expect(profile.username).to.equal('theSeanCook');
+      expect(profile.displayName).to.equal('Sean Cook');
+    });
+  
+    it('should set raw property', function() {
+      expect(profile._raw).to.be.a('string');
+    });
+  
+    it('should set json property', function() {
+      expect(profile._json).to.be.an('object');
+    });
+  
+    it('should set accessLevel property', function() {
+      expect(profile._accessLevel).to.equal('read');
+    });
+    
+  }); // fetched from default endpoint, with status excluded
+  
+  describe('fetched from default endpoint, with entities excluded', function() {
+    var strategy = new TwitterStrategy({
+      consumerKey: 'ABC123',
+      consumerSecret: 'secret',
+      includeEntities: false
+    }, function verify(){});
+    
+    strategy._oauth.get = function(url, token, tokenSecret, callback) {
+      if (url != 'https://api.twitter.com/1.1/account/verify_credentials.json?include_entities=false') { return callback(new Error('incorrect url argument')); }
+      if (token != 'token') { return callback(new Error('incorrect token argument')); }
+      if (tokenSecret != 'token-secret') { return callback(new Error('incorrect tokenSecret argument')); }
+    
+      var body = fs.readFileSync('test/fixtures/account/theSeanCook.json', 'utf8');
+      var response = {headers:{'x-access-level': 'read'}};
+      callback(null, body, response);
+    }
+    
+    
+    var profile;
+  
+    before(function(done) {
+      strategy.userProfile('token', 'token-secret', { user_id: '6253282' }, function(err, p) {
+        if (err) { return done(err); }
+        profile = p;
+        done();
+      });
+    });
+  
+    it('should parse profile', function() {
+      expect(profile.provider).to.equal('twitter');
+      expect(profile.id).to.equal('38895958');
+      expect(profile.username).to.equal('theSeanCook');
+      expect(profile.displayName).to.equal('Sean Cook');
+    });
+  
+    it('should set raw property', function() {
+      expect(profile._raw).to.be.a('string');
+    });
+  
+    it('should set json property', function() {
+      expect(profile._json).to.be.an('object');
+    });
+  
+    it('should set accessLevel property', function() {
+      expect(profile._accessLevel).to.equal('read');
+    });
+    
+  }); // fetched from default endpoint, with entities excluded
+  
   describe('fetched from legacy users/show endpoint', function() {
     var strategy = new TwitterStrategy({
       consumerKey: 'ABC123',
