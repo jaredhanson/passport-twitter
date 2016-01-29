@@ -1,10 +1,10 @@
 # passport-twitter
 
-[![Build](https://travis-ci.org/jaredhanson/passport-twitter.svg?branch=master)](https://travis-ci.org/jaredhanson/passport-twitter)
-[![Coverage](https://coveralls.io/repos/jaredhanson/passport-twitter/badge.svg?branch=master)](https://coveralls.io/r/jaredhanson/passport-twitter)
-[![Quality](https://codeclimate.com/github/jaredhanson/passport-twitter/badges/gpa.svg)](https://codeclimate.com/github/jaredhanson/passport-twitter)
-[![Dependencies](https://david-dm.org/jaredhanson/passport-twitter.svg)](https://david-dm.org/jaredhanson/passport-twitter)
-[![Tips](https://img.shields.io/gratipay/jaredhanson.svg)](https://gratipay.com/jaredhanson/)
+[![Build](https://img.shields.io/travis/jaredhanson/passport-twitter.svg)](https://travis-ci.org/jaredhanson/passport-twitter)
+[![Coverage](https://img.shields.io/coveralls/jaredhanson/passport-twitter.svg)](https://coveralls.io/r/jaredhanson/passport-twitter)
+[![Quality](https://img.shields.io/codeclimate/github/jaredhanson/passport-twitter.svg?label=quality)](https://codeclimate.com/github/jaredhanson/passport-twitter)
+[![Dependencies](https://img.shields.io/david/jaredhanson/passport-twitter.svg)](https://david-dm.org/jaredhanson/passport-twitter)
+
 
 
 [Passport](http://passportjs.org/) strategy for authenticating with [Twitter](http://twitter.com/)
