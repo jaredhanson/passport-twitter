@@ -18,7 +18,9 @@ unobtrusively integrated into any application or framework that supports
 
 ## Install
 
-    $ npm install passport-twitter
+```bash
+$ npm install passport-twitter
+```
 
 ## Usage
 
@@ -41,17 +43,19 @@ corresponding secret as arguments, as well as `profile` which contains the
 authenticated user's Twitter profile.   The `verify` callback must call `cb`
 providing a user to complete authentication.
 
-    passport.use(new TwitterStrategy({
-        consumerKey: TWITTER_CONSUMER_KEY,
-        consumerSecret: TWITTER_CONSUMER_SECRET,
-        callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
-      },
-      function(token, tokenSecret, profile, cb) {
-        User.findOrCreate({ twitterId: profile.id }, function (err, user) {
-          return cb(err, user);
-        });
-      }
-    ));
+```javascript
+passport.use(new TwitterStrategy({
+    consumerKey: TWITTER_CONSUMER_KEY,
+    consumerSecret: TWITTER_CONSUMER_SECRET,
+    callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+  },
+  function(token, tokenSecret, profile, cb) {
+    User.findOrCreate({ twitterId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
+```
 
 #### Authenticate Requests
 
@@ -61,15 +65,17 @@ authenticate requests.
 For example, as route middleware in an [Express](http://expressjs.com/)
 application:
 
-    app.get('/auth/twitter',
-      passport.authenticate('twitter'));
-    
-    app.get('/auth/twitter/callback', 
-      passport.authenticate('twitter', { failureRedirect: '/login' }),
-      function(req, res) {
-        // Successful authentication, redirect home.
-        res.redirect('/');
-      });
+```javascript
+app.get('/auth/twitter',
+  passport.authenticate('twitter'));
+
+app.get('/auth/twitter/callback', 
+  passport.authenticate('twitter', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+```
 
 ## Examples
 
