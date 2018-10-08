@@ -4,7 +4,9 @@
 using the OAuth 1.0a API.
 
 ---
+
 <a href="http://www.tkqlhce.com/click-8907558-13433666" target="_top">1Password, the only password manager you should trust.</a>Industry-leading security and award winning design.<img src="http://www.awltovhc.com/image-8907558-13433666" width="1" height="1" border="0"/>
+
 ---
 
 This module lets you authenticate using Twitter in your Node.js applications.
