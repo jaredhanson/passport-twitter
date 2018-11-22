@@ -31,8 +31,8 @@
   ],
   "main": "./lib",
   "dependencies": {
-    "passport-oauth1": "1.x.x",
-    "xtraverse": "0.1.x"
+    "libxmljs": "^0.19.5",
+    "passport-oauth1": "1.x.x"
   },
   "devDependencies": {
     "make-node": "0.3.x",
