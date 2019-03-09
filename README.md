@@ -15,12 +15,10 @@ unobtrusively integrated into any application or framework that supports
 
 ---
 
-Status:
-[![Build](https://img.shields.io/travis/jaredhanson/passport-twitter.svg)](https://travis-ci.org/jaredhanson/passport-twitter)
-[![Quality](https://img.shields.io/codeclimate/github/jaredhanson/passport-twitter.svg?label=quality)](https://codeclimate.com/github/jaredhanson/passport-twitter)
-[![Coverage](https://img.shields.io/coveralls/jaredhanson/passport-twitter.svg)](https://coveralls.io/r/jaredhanson/passport-twitter)
-[![Dependencies](https://img.shields.io/david/jaredhanson/passport-twitter.svg)](https://david-dm.org/jaredhanson/passport-twitter)
-
+[![npm](https://img.shields.io/npm/v/passport-twitter.svg)](https://www.npmjs.com/package/passport-twitter)
+[![build](https://img.shields.io/travis/jaredhanson/passport-twitter.svg)](https://travis-ci.org/jaredhanson/passport-twitter)
+[![coverage](https://img.shields.io/coveralls/jaredhanson/passport-twitter.svg)](https://coveralls.io/github/jaredhanson/passport-twitter)
+[...](https://github.com/jaredhanson/passport-twitter/wiki/Status)
 
 ## Install
 
