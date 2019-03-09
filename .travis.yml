@@ -14,8 +14,8 @@ node_js:
 
 
 before_install:
-  - "npm install make-node@0.3.x -g"
-  - "preinstall-compat"
+  - "npm install -g istanbul@0.4"
+  - "npm install -g coveralls@3"
 
 script:
   - "make test-cov"
