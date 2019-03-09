@@ -14,7 +14,7 @@ node_js:
 
 
 before_install:
-  - "npm install -g istanbul@0.2.3"
+  - "npm install -g istanbul@0.2.2"
   - "npm install -g coveralls@2.11.4"
 
 script:
