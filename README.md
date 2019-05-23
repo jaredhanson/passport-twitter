@@ -87,13 +87,6 @@ Developers using the popular [Express](http://expressjs.com/) web framework can
 refer to an [example](https://github.com/passport/express-4.x-twitter-example)
 as a starting point for their own web applications.
 
-## Sponsorship
-
-Passport is open source software.  Ongoing development is made possible by
-generous contributions from [individuals and corporations](https://github.com/jaredhanson/passport/blob/master/SPONSORS.md).
-To learn more about how you can help keep this project financially sustainable,
-please visit Jared Hanson's page on [Patreon](https://www.patreon.com/jaredhanson).
-
 ## License
 
 [The MIT License](http://opensource.org/licenses/MIT)
