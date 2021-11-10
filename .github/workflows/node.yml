@@ -16,7 +16,18 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 12, 14, 16, 17 ]
+        node-version:
+          - 17
+          - 16
+          - 14
+          - 12
+          - 10
+          - 8
+          - 6
+          - 4
+          - 3 # io.js
+          - 2 # io.js
+          - 1 # io.js
 
     steps:
     - uses: actions/checkout@v2
