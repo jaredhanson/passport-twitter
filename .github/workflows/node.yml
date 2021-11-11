@@ -25,9 +25,6 @@ jobs:
           - 8
           - 6
           - 4
-          - 3 # io.js
-          - 2 # io.js
-          - 1 # io.js
 
     steps:
     - uses: actions/checkout@v2
