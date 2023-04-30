@@ -1,34 +1,34 @@
 # passport-twitter
 
-[Passport](http://passportjs.org/) strategy for authenticating with [Twitter](http://twitter.com/)
-using the OAuth 1.0a API.
+[Passport](https://www.passportjs.org/) strategy for authenticating with
+[Twitter](https://twitter.com/) using [OAuth 1.0a](https://www.passportjs.org/features/oauth/).
 
 This module lets you authenticate using Twitter in your Node.js applications.
 By plugging into Passport, Twitter authentication can be easily and
 unobtrusively integrated into any application or framework that supports
-[Connect](http://www.senchalabs.org/connect/)-style middleware, including
-[Express](http://expressjs.com/).
+[Connect](https://github.com/senchalabs/connect#readme)-style middleware,
+including [Express](https://expressjs.com/).
 
 <div align="center">
 
+:brain: [Understanding OAuth 1.0](https://www.passportjs.org/concepts/oauth/?utm_source=github&utm_medium=referral&utm_campaign=passport-twitter&utm_content=nav-concept) •
 :heart: [Sponsors](https://www.passportjs.org/sponsors/?utm_source=github&utm_medium=referral&utm_campaign=passport-twitter&utm_content=nav-sponsors)
 
 </div>
 
+<div align="right">
+  <sup>Developed by <a href="#authors">Jared Hanson</a>.</sub>
+</div>
+
 ---
 
-<p align="center">
+<div align="center">
   <sup>Advertisement</sup>
   <br>
   <a href="https://click.linksynergy.com/link?id=D*o7yui4/NM&offerid=507388.922484&type=2&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fthe-complete-nodejs-developer-course-2%2F&u1=nzQ4K5UpDje9RRkYGfU82wFPXFWOCHAv5M0gEu5tJJH">The Complete Node.js Developer Course</a><br>Learn Node. js by building real-world applications with Node, Express, MongoDB, Jest, and more!
-</p>
+</div>
 
 ---
-
-[![npm](https://img.shields.io/npm/v/passport-twitter.svg)](https://www.npmjs.com/package/passport-twitter)
-[![build](https://img.shields.io/travis/jaredhanson/passport-twitter.svg)](https://travis-ci.org/jaredhanson/passport-twitter)
-[![coverage](https://img.shields.io/coveralls/jaredhanson/passport-twitter.svg)](https://coveralls.io/github/jaredhanson/passport-twitter)
-[...](https://github.com/jaredhanson/passport-twitter/wiki/Status)
 
 ## Install
 
@@ -97,8 +97,12 @@ Developers using the popular [Express](http://expressjs.com/) web framework can
 refer to an [example](https://github.com/passport/express-4.x-twitter-example)
 as a starting point for their own web applications.
 
+## Authors
+
+- [Jared Hanson](https://www.jaredhanson.me/) { [![WWW](https://raw.githubusercontent.com/jaredhanson/jaredhanson/master/images/globe-12x12.svg)](https://www.jaredhanson.me/) [![Facebook](https://raw.githubusercontent.com/jaredhanson/jaredhanson/master/images/facebook-12x12.svg)](https://www.facebook.com/jaredhanson) [![LinkedIn](https://raw.githubusercontent.com/jaredhanson/jaredhanson/master/images/linkedin-12x12.svg)](https://www.linkedin.com/in/jaredhanson) [![Twitter](https://raw.githubusercontent.com/jaredhanson/jaredhanson/master/images/twitter-12x12.svg)](https://twitter.com/jaredhanson) [![GitHub](https://raw.githubusercontent.com/jaredhanson/jaredhanson/master/images/github-12x12.svg)](https://github.com/jaredhanson) }
+
 ## License
 
 [The MIT License](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2011-2016 Jared Hanson <[http://jaredhanson.net/](http://jaredhanson.net/)>
+Copyright (c) 2011-2023 Jared Hanson
