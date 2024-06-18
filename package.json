@@ -35,12 +35,12 @@
   ],
   "main": "./lib",
   "dependencies": {
-    "passport-oauth1": "1.x.x",
-    "xtraverse": "0.1.x"
+    "@xmldom/xmldom": "^0.8.10",
+    "passport-oauth1": "1.x.x"
   },
   "devDependencies": {
     "make-node": "0.4.6",
-    "mocha": "2.x.x",
+    "mocha": "10.4.0",
     "chai": "2.x.x",
     "chai-passport-strategy": "1.x.x"
   },
