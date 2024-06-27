@@ -1,53 +1,53 @@
 {
-  "name": "passport-twitter",
-  "version": "1.0.4",
-  "description": "Twitter authentication strategy for Passport.",
-  "keywords": [
-    "passport",
-    "twitter",
-    "auth",
-    "authn",
-    "authentication",
-    "identity"
-  ],
-  "author": {
-    "name": "Jared Hanson",
-    "email": "jaredhanson@gmail.com",
-    "url": "http://www.jaredhanson.net/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/jaredhanson/passport-twitter.git"
-  },
-  "bugs": {
-    "url": "http://github.com/jaredhanson/passport-twitter/issues"
-  },
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/jaredhanson"
-  },
-  "license": "MIT",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://opensource.org/licenses/MIT"
+    "name": "@panchoDl/passport-twitter",
+    "version": "0.0.1",
+    "description": "Stolen Twitter authentication strategy for Passport.",
+    "keywords": [
+        "passport",
+        "twitter",
+        "auth",
+        "authn",
+        "authentication",
+        "identity"
+    ],
+    "author": {
+        "name": "Pancho Dl",
+        "email": "panchodl95@gmail.com",
+        "url": "http://www.jaredhanson.net/"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:PanchoBubble/passport-twitter.git"
+    },
+    "bugs": {
+        "url": "http://github.com/PanchoBubble/passport-twitter/issues"
+    },
+    "funding": {
+        "type": "github",
+        "url": "https://github.com/sponsors/PanchoBubble"
+    },
+    "license": "MIT",
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://opensource.org/licenses/MIT"
+        }
+    ],
+    "main": "./lib",
+    "dependencies": {
+        "passport-oauth1": "1.x.x",
+        "xtraverse": "0.1.x"
+    },
+    "devDependencies": {
+        "make-node": "0.4.6",
+        "mocha": "2.x.x",
+        "chai": "2.x.x",
+        "chai-passport-strategy": "1.x.x"
+    },
+    "engines": {
+        "node": ">= 0.4.0"
+    },
+    "scripts": {
+        "test": "mocha --require ./test/bootstrap/node --recursive"
     }
-  ],
-  "main": "./lib",
-  "dependencies": {
-    "passport-oauth1": "1.x.x",
-    "xtraverse": "0.1.x"
-  },
-  "devDependencies": {
-    "make-node": "0.4.6",
-    "mocha": "2.x.x",
-    "chai": "2.x.x",
-    "chai-passport-strategy": "1.x.x"
-  },
-  "engines": {
-    "node": ">= 0.4.0"
-  },
-  "scripts": {
-    "test": "mocha --require ./test/bootstrap/node --recursive"
-  }
 }
