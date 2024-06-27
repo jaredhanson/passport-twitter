@@ -11,7 +11,7 @@ describe('Strategy#userProfile', function() {
     }, function verify(){});
     
     strategy._oauth.get = function(url, token, tokenSecret, callback) {
-      if (url != 'https://api.twitter.com/1.1/account/verify_credentials.json') { return callback(new Error('incorrect url argument')); }
+      if (url != 'https://api.x.com/1.1/account/verify_credentials.json') { return callback(new Error('incorrect url argument')); }
       if (token != 'token') { return callback(new Error('incorrect token argument')); }
       if (tokenSecret != 'token-secret') { return callback(new Error('incorrect tokenSecret argument')); }
     
@@ -60,7 +60,7 @@ describe('Strategy#userProfile', function() {
     }, function verify(){});
     
     strategy._oauth.get = function(url, token, tokenSecret, callback) {
-      if (url != 'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true') { return callback(new Error('incorrect url argument')); }
+      if (url != 'https://api.x.com/1.1/account/verify_credentials.json?include_email=true') { return callback(new Error('incorrect url argument')); }
       if (token != 'token') { return callback(new Error('incorrect token argument')); }
       if (tokenSecret != 'token-secret') { return callback(new Error('incorrect tokenSecret argument')); }
     
@@ -109,7 +109,7 @@ describe('Strategy#userProfile', function() {
     }, function verify(){});
     
     strategy._oauth.get = function(url, token, tokenSecret, callback) {
-      if (url != 'https://api.twitter.com/1.1/account/verify_credentials.json?skip_status=true') { return callback(new Error('incorrect url argument')); }
+      if (url != 'https://api.x.com/1.1/account/verify_credentials.json?skip_status=true') { return callback(new Error('incorrect url argument')); }
       if (token != 'token') { return callback(new Error('incorrect token argument')); }
       if (tokenSecret != 'token-secret') { return callback(new Error('incorrect tokenSecret argument')); }
     
@@ -158,7 +158,7 @@ describe('Strategy#userProfile', function() {
     }, function verify(){});
     
     strategy._oauth.get = function(url, token, tokenSecret, callback) {
-      if (url != 'https://api.twitter.com/1.1/account/verify_credentials.json?include_entities=false') { return callback(new Error('incorrect url argument')); }
+      if (url != 'https://api.x.com/1.1/account/verify_credentials.json?include_entities=false') { return callback(new Error('incorrect url argument')); }
       if (token != 'token') { return callback(new Error('incorrect token argument')); }
       if (tokenSecret != 'token-secret') { return callback(new Error('incorrect tokenSecret argument')); }
     
@@ -203,11 +203,11 @@ describe('Strategy#userProfile', function() {
     var strategy = new TwitterStrategy({
       consumerKey: 'ABC123',
       consumerSecret: 'secret',
-      userProfileURL: 'https://api.twitter.com/1.1/users/show.json'
+      userProfileURL: 'https://api.x.com/1.1/users/show.json'
     }, function verify(){});
     
     strategy._oauth.get = function(url, token, tokenSecret, callback) {
-      if (url != 'https://api.twitter.com/1.1/users/show.json?user_id=6253282') { return callback(new Error('incorrect url argument')); }
+      if (url != 'https://api.x.com/1.1/users/show.json?user_id=6253282') { return callback(new Error('incorrect url argument')); }
       if (token != 'token') { return callback(new Error('incorrect token argument')); }
       if (tokenSecret != 'token-secret') { return callback(new Error('incorrect tokenSecret argument')); }
     
@@ -290,7 +290,7 @@ describe('Strategy#userProfile', function() {
     var strategy = new TwitterStrategy({
       consumerKey: 'ABC123',
       consumerSecret: 'secret',
-      userProfileURL: 'https://api.twitter.com/1.1/users/show.json'
+      userProfileURL: 'https://api.x.com/1.1/users/show.json'
     }, function verify(){});
     
     strategy._oauth.get = function(url, token, tokenSecret, callback) {
@@ -326,7 +326,7 @@ describe('Strategy#userProfile', function() {
     var strategy = new TwitterStrategy({
       consumerKey: 'ABC123',
       consumerSecret: 'secret',
-      userProfileURL: 'https://api.twitter.com/1.1/users/show.json'
+      userProfileURL: 'https://api.x.com/1.1/users/show.json'
     }, function verify(){});
     
     strategy._oauth.get = function(url, token, tokenSecret, callback) {
@@ -359,7 +359,7 @@ describe('Strategy#userProfile', function() {
     var strategy = new TwitterStrategy({
       consumerKey: 'ABC123',
       consumerSecret: 'secret',
-      userProfileURL: 'https://api.twitter.com/1.1/users/show.json'
+      userProfileURL: 'https://api.x.com/1.1/users/show.json'
     }, function verify(){});
     
     strategy._oauth.get = function(url, token, tokenSecret, callback) {

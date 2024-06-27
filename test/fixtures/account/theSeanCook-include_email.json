@@ -89,7 +89,7 @@
             "id": "866269c983527d5a",
             "name": "Ashbury Heights",
             "place_type": "neighborhood",
-            "url": "http://api.twitter.com/1/geo/id/866269c983527d5a.json"
+            "url": "http://api.x.com/1/geo/id/866269c983527d5a.json"
         },
         "retweet_count": 0,
         "retweeted": false,
