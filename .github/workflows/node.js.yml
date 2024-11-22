@@ -23,9 +23,12 @@ jobs:
         - 20.x
         - 18.x
         - 16.x
-#        - 14.x
+        - 14.x
+        - 12.x
+        - 10.x
         - 8.x
         - 6.x
+        - 4.x
 
     steps:
     - uses: actions/checkout@v4
