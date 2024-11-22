@@ -2,7 +2,7 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 # https://github.com/actions/starter-workflows/blob/main/ci/node.js.yml
 
-name: Node.js CI
+name: Node.js CI (New)
 
 on:
   push:
@@ -71,6 +71,7 @@ jobs:
     - id: lockfile-version
       name: Get package-lock.json lockfileVersion
       run: echo "version=$(cat package-lock.json | jq '.lockfileVersion')" >> $GITHUB_OUTPUT
+      if: hashFiles('package-lock.json') != ''
       
     - env:
         N_MAJOR: ${{steps.lockfile-version.outputs.version}}
