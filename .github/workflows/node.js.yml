@@ -89,7 +89,7 @@ jobs:
       # [1]: https://docs.npmjs.com/cli/v10/commands/npm-ci
       # [2]: https://blog.npmjs.org/post/171556855892/introducing-npm-ci-for-faster-more-reliable
       #if: steps.npm-version.outputs.major >= 6
-      if: steps.lockfile-versio.outputs.version != null
+      if: steps.lockfile-version.outputs.version != null
     
     - run: npm install
       if: steps.lockfile-version.outputs.version == null
