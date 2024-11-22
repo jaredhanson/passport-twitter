@@ -1,0 +1,92 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+# https://github.com/actions/starter-workflows/blob/main/ci/node.js.yml
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version:
+        - current
+        - 22.x
+        - 20.x
+        - 18.x
+        - 16.x
+#        - 14.x
+        - 8.x
+        - 6.x
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - id: setup-node
+      name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - id: node-v
+      name: Output Node.js version
+      run: echo "version=$(node -v)" >> $GITHUB_OUTPUT
+    
+    - id: node-version
+      name: Parse Node.js version
+      uses: apexskier/github-semver-parse@v1
+      with:
+        version: ${{ steps.node-v.outputs.version }}
+        
+    - run: which jq
+    
+    - env:
+        N_MAJOR: ${{steps.node-version.outputs.major}}
+        N_MINOR: ${{steps.node-version.outputs.minor}}
+      run: echo "node - $N_MAJOR $N_MINOR"
+     
+    - id: npm-v
+      name: Output npm version
+      run: echo "version=$(npm -v)" >> $GITHUB_OUTPUT
+      
+    - id: npm-version
+      name: Parse npm version
+      uses: apexskier/github-semver-parse@v1
+      with:
+        version: ${{ steps.npm-v.outputs.version }}
+        
+    - env:
+        N_MAJOR: ${{steps.npm-version.outputs.major}}
+        N_MINOR: ${{steps.npm-version.outputs.minor}}
+      run: echo "npm - $N_MAJOR $N_MINOR"
+      
+    - id: lockfile-version
+      name: Get package-lock.json lockfileVersion
+      run: echo "version=$(cat package-lock.json | jq '.lockfileVersion')" >> $GITHUB_OUTPUT
+      
+    - env:
+        N_MAJOR: ${{steps.lockfile-version.outputs.version}}
+      run: echo "lockfile - $N_MAJOR"
+      
+    - run: npm ci
+      # The [`ci`][1] command was [introduced][2] with npm 6.x, and is intended
+      # to be used in continuous integration environments.  If npm 6.x or later
+      # is available, `npm ci` is executed to install dependencies.  Otherwise,
+      # `npm install` is executed.
+      #
+      # [1]: https://docs.npmjs.com/cli/v10/commands/npm-ci
+      # [2]: https://blog.npmjs.org/post/171556855892/introducing-npm-ci-for-faster-more-reliable
+      if: steps.npm-version.outputs.major >= 6
+    
+    - run: npm install
+      if: steps.npm-version.outputs.major < 6
+    
+    - run: npm test
