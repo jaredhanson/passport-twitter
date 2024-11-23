@@ -72,7 +72,7 @@ jobs:
       run: echo "npm - $N_MAJOR $N_MINOR"
       
     - id: lockfile-version
-      name: Get package-lock.json lockfileVersion
+      name: Get package lockfileVersion
       run: echo "version=$(cat package-lock.json | jq '.lockfileVersion')" >> $GITHUB_OUTPUT
       if: hashFiles('package-lock.json') != ''
       
@@ -80,11 +80,19 @@ jobs:
         N_MAJOR: ${{steps.lockfile-version.outputs.version}}
       run: echo "lockfile - $N_MAJOR"
     
-    - id: install-lockfile-v3
+    - id: clean-install-v3
+      name: Clean install with lockfileVersion >= 3
       run: npm ci
       if: steps.lockfile-version.outputs.version >= 3 && steps.npm-version.outputs.major >= 7
       
-    - run: npm ci
+    - id: clean-install-v3-compat
+      name: Install with lockfileVersion >= 3
+      run: npm install
+      if: steps.lockfile-version.outputs.version <= 3 && steps.lockfile-version.outputs.version != null && steps.npm-version.outputs.major < 7
+      
+    - id: clean-install
+      name: Clean install
+      run: npm ci
       # The [`ci`][1] command was [introduced][2] with npm@5, and is intended to
       # be used in continuous integration environments.  If npm@5 or later is
       # installed and the package-lock.json file exists, `npm ci` is executed to
@@ -93,9 +101,11 @@ jobs:
       # [1]: https://docs.npmjs.com/cli/v10/commands/npm-ci
       # [2]: https://blog.npmjs.org/post/171556855892/introducing-npm-ci-for-faster-more-reliable
       #if: steps.npm-version.outputs.major >= 6
-      if: steps.lockfile-version.outputs.version != null && steps.npm-version.outputs.major >= 5 && steps.install-lockfile-v3.outcome == 'skipped'
+      if: steps.lockfile-version.outputs.version != null && steps.npm-version.outputs.major >= 5
+          && steps.clean-install-v3.outcome == 'skipped' && steps.clean-install-v3-compat.outcome == 'skipped'
     
     - run: npm install
+      name: Install
       if: steps.lockfile-version.outputs.version == null || steps.npm-version.outputs.major < 5
     
     - run: npm test
