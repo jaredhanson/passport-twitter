@@ -79,6 +79,10 @@ jobs:
     - env:
         N_MAJOR: ${{steps.lockfile-version.outputs.version}}
       run: echo "lockfile - $N_MAJOR"
+    
+    - id: install-lockfile-v3
+      run: npm ci
+      if: steps.lockfile-version.outputs.version >= 3 && steps.npm-version.outputs.major >= 7
       
     - run: npm ci
       # The [`ci`][1] command was [introduced][2] with npm@5, and is intended to
@@ -89,7 +93,7 @@ jobs:
       # [1]: https://docs.npmjs.com/cli/v10/commands/npm-ci
       # [2]: https://blog.npmjs.org/post/171556855892/introducing-npm-ci-for-faster-more-reliable
       #if: steps.npm-version.outputs.major >= 6
-      if: steps.lockfile-version.outputs.version != null && steps.npm-version.outputs.major >= 5
+      if: steps.lockfile-version.outputs.version != null && steps.npm-version.outputs.major >= 5 && steps.install-lockfile-v3.outcome == 'skipped'
     
     - run: npm install
       if: steps.lockfile-version.outputs.version == null || steps.npm-version.outputs.major < 5
