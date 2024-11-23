@@ -83,12 +83,12 @@ jobs:
     - id: clean-install-v3
       name: Clean install with lockfileVersion >= 3
       run: npm ci
-      if: steps.lockfile-version.outputs.version >= 3 && steps.npm-version.outputs.major >= 7
+      if: steps.npm-version.outputs.major >= 7 && steps.lockfile-version.outputs.version >= 3
       
     - id: clean-install-v3-compat
       name: Install with lockfileVersion >= 3
       run: npm install
-      if: steps.lockfile-version.outputs.version <= 3 && steps.lockfile-version.outputs.version != null && steps.npm-version.outputs.major < 7 && steps.npm-version.outputs.major >= 5
+      if: steps.npm-version.outputs.major < 7 && steps.npm-version.outputs.major >= 5 && steps.lockfile-version.outputs.version >= 3
       
     - id: clean-install
       name: Clean install
@@ -101,11 +101,11 @@ jobs:
       # [1]: https://docs.npmjs.com/cli/v10/commands/npm-ci
       # [2]: https://blog.npmjs.org/post/171556855892/introducing-npm-ci-for-faster-more-reliable
       #if: steps.npm-version.outputs.major >= 6
-      if: steps.lockfile-version.outputs.version != null && steps.npm-version.outputs.major >= 5
+      if: steps.npm-version.outputs.major >= 5 && steps.lockfile-version.outputs.version != null
           && steps.clean-install-v3.outcome == 'skipped' && steps.clean-install-v3-compat.outcome == 'skipped'
     
     - run: npm install
       name: Install
-      if: steps.lockfile-version.outputs.version == null || steps.npm-version.outputs.major < 5
+      if: steps.npm-version.outputs.major < 5 || steps.lockfile-version.outputs.version == null
     
     - run: npm test
